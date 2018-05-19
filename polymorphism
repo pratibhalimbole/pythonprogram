@@ -1,0 +1,50 @@
+#program for polymorphism
+class department:
+    def deptinfo(self):#here this method is used for polymorphism
+        print("orgnization information")
+#object for department
+dept=department()
+dept.deptinfo()
+print("---------------------------------------")
+#class for IT sector
+class IT(department):
+    def __init__(self,dname,capacity,dept):
+        self.dname=dname
+        self.capacity=capacity
+    def deptinfo(self):
+        print("department information")
+        print("dname=", self.dname)
+        print("capacity=", self.capacity)
+
+#object for class It
+it=IT("itd","1000",dept)
+it.deptinfo()
+print("======================================")
+
+class EN(department):
+    def __init__(self,dname,instrument,dept):
+        self.dname=dname
+        self.instrument=instrument
+    def deptinfo(self):
+        print("ENTC department information")
+        print("dname=", self.dname)
+        print("instrument=", self.instrument)
+
+#object for class It
+en=EN("ENTC","2",dept)
+en.deptinfo()
+print("======================================")
+#class cse
+class CSE(department):
+    def __init__(self,cname,lab,dept):
+        self.cname=cname
+        self.lab=lab
+    def deptinfo(self):
+        print(" cse department information")
+        print("cname=", self.cname)
+        print("lab=", self.lab)
+
+#object for class It
+cs=CSE("CS","10002",dept)
+cs.deptinfo()
+print("======================================")
