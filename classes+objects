@@ -1,0 +1,47 @@
+Object − Objects have states and behaviors. ... An object is an instance of a class. 
+Class − A class can be defined as a template/blueprint that describes the behavior/state that the object of its type support.
+
+
+
+
+class University:
+
+    def __init__(self, name, location):
+        self.uniname =name
+        self.location = location
+
+    def Name(self):
+        return self.uniname+ " ," + self.location
+a = University("pune university", "pune")
+print(a.Name())
+print("================================================================")
+class clg(University):
+
+    def __init__(self, name, location,clgname):
+        University.__init__(self,name, location)
+        self.clgname = clgname
+
+    def Getcname(self):
+        return self.Name() + ", " +  self.clgname
+
+
+b = clg("pune university", "pune", "sinhgad")
+
+
+print(b.Getcname())
+print("==================================================================")
+class branch(clg,University):
+
+    def __init__(self, name, location,clgname,bname):
+        University.__init__(self,name, location)
+        b.__init__(self, name, location,clgname,bname)
+        self.bname = bname
+
+    def Getbname(self):
+        return self.Name() + ", " +  self.clgname() + "," +self.bname()
+
+
+b1 = branch("cse","pune university", "pune", "sinhgad")
+
+
+print(b1.Getbname())
