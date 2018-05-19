@@ -1,0 +1,58 @@
+The open() function is used to open files in our system, the filename is the
+name of the file to be opened. 
+
+The mode indicates, how the file is going to be opened "r" for reading,
+"w" for writing and "a" for a appending. 
+
+The open function takes two arguments, the name of the file and and the mode
+for which we would like to open the file. 
+
+By default, when only the filename is passed, the open function opens the file
+in read mode.
+
+
+# file handling with write mode
+file = open('pra.txt', 'w')
+file.write('hi pratibha.\n')
+file.write('welcome to python.\n')
+file.write('start learning.\n')
+
+file.close()
+print("=====================================================")
+# file handling for reading process#it prints only single line
+file = open('pra.txt', 'r')
+line = file.readline()
+print(line)
+print("=====================================================")
+# to print multiple line
+lines = file.readlines()
+print(lines)
+print('the type of lines', '=', type(lines))  # shows line types as list.
+print("=====================================================")
+# to iterate the lines
+for i in lines:
+    print('the lines are', '=', i)
+    file.close()
+
+print("=====================================================")
+# operation append on file
+file = open('pra.txt', 'a')
+file.write('regular expression need to study today.\n')
+file.close()
+print("=====================================================")
+# read mode bydeault
+file = open('pra.txt')
+lines = file.readlines()
+for i in lines:
+    print('the lines in file', '=', i)
+
+print("=====================================================")
+# differnt methods to write and read a file
+
+file = open('pra.txt', 'r+')
+file.write('you are in class.\n')
+lines = file.readlines()
+print(lines)
+file.close()
+FILEhandling.txt
+Displaying FILEhandling.txt.
