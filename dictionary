@@ -1,0 +1,60 @@
+#Any key of the dictionary is associated (or mapped) to a value. The values of a dictionary can be any Python data type. 
+So dictionaries are unordered key-value-pairs. Dictionaries don't support 
+the sequence operation of the sequence data types like strings, tuples and lists.
+
+
+
+
+
+
+dict1 = {'id':101,'name':'Python','version':3.6}
+print('dict1 =',dict1)
+print('type(dict1) =',type(dict1))
+print('=====================================')
+
+print('dict1[id] =',dict1['id'])
+print('dict1["name"] =',dict1['name'])
+print('dict1["version"] =',dict1['version'])
+
+print('=====================================')
+# dict.keys()
+print('dict1.keys() =',dict1.keys())
+
+# dict.values()
+print('dict1.values() =',dict1.values())
+print('=====================================')
+# dict.get(key)
+print('dict1.get("id") =',dict1.get('id'))
+print('dict1.get("name") =',dict1.get('name'))
+print('dict1.get("version") =',dict1.get('version'))
+print('=====================================')
+# dict[key] = value
+dict1['IDE'] = 'PyCharm'
+dict1['file_name']='dictionarymethods'
+print(dict1)
+print('=====================================')
+# dict.update({key : value})
+dict1.update({'topic':'Dictionary'})
+dict1.update({'date':'24'})#define new key :value in clerlybraces
+print(dict1)
+print('=====================================')
+# dict.pop(key)
+dict1.pop('topic')
+dict1.pop('date')
+print(dict1)
+print('=====================================')
+# Iterate the dict
+# dict[key]
+for i in dict1:
+    print('key =',i,'and value =',dict1[i])
+    print('key =',i,'and value =',dict1.get(i))
+print('=====================================')
+# dict.get(key)
+for i in dict1:
+    print('key =',i,'and value =',dict1.get(i))
+print('=====================================')
+# items returns key and value
+for key,value in dict1.items():
+    print(key,'==========>',value)
+dic - Copy.txt
+Displaying dic - Copy.txt.
