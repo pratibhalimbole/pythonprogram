@@ -1,0 +1,106 @@
+class University:
+    def __init__(self,uniname,location):
+        self.uniname = uniname
+        self.location = location
+
+    def universityInfo(self):
+        print('university Information')
+        print('uniname =',self.uniname)
+        print('location =',self.location)
+
+
+
+class College(University):
+    def __init__(self,colname,uni):
+        self.colname = colname
+        super().__init__(uni.uniname,uni.location)
+        # self.uniname = super.uniname
+        # self.location = super.location
+
+    def collegeInfo(self):
+        print('college Information')
+        print('Name =',self.colname)
+        print('uniname =', self.uniname)
+        print('location =',self.location)
+
+
+class Branch(College):
+    def __init__(self,bname,college):
+        self.bname = bname
+        self.collegeDetail = college
+        # super().__init__(college)
+        self.colname=college.colname
+        self.uniname = college.uniname
+        self.location = college.location
+
+
+    def BranchInfo(self):
+        print('branch Information')
+        print('bname=',self.bname)
+        print('Name =', self.colname)
+        print('uniname =', self.uniname)
+        print('location =', self.location)
+
+
+class student(Branch):
+    def __init__(self,sname,branchDetails):
+        self.sname=sname
+        self.branchdetails = branchDetails
+        self.bname = branchDetails.bname
+        self.colname=branchDetails.colname
+        self.uniname = branchDetails.uniname
+        self.location = branchDetails.location
+
+    def studentInfo(self):
+        print('student Information')
+        print('sname=', self.sname)
+        print('bname=',self.bname)
+        print('Name =', self.colname)
+        print('uniname =', self.uniname)
+        print('location =', self.location)
+
+
+#object for class university
+uni1 = University("pune university","pune")
+uni1.universityInfo()
+print('-----------------------------------------------')
+print('university.name =',uni1.uniname)
+print('university.location =',uni1.location)
+
+print('===============================')
+# object for class college
+col1 = College("sinhgad",uni1)
+col1.collegeInfo()
+# col1.universityInfo()
+print('-----------------------------------------------')
+print('college.name =', col1.colname)
+print('university.name =', col1.uniname)
+print('university.location =', col1.location)
+
+print('===============================')
+
+# object for class branch
+b1 = Branch("cse",col1)
+b1.BranchInfo()
+# b1.collegeInfo()
+# b1.universityInfo()
+print('-----------------------------------------------')
+print('branch.name =', b1.bname)
+print('college.name =', b1.colname)
+print('university.name =', b1.uniname)
+print('university.location =', b1.location)
+print("======================================================")
+
+# object for class branch
+s1 = student("pratibha",b1)
+s1.studentInfo()
+# s1.BranchInfo()
+# s1.collegeInfo()
+# s1.universityInfo()
+print('-----------------------------------------------')
+print('branch.name =', s1.sname)
+print('branch.name =', s1.bname)
+print('college.name =', s1.colname)
+print('university.name =', s1.uniname)
+print('university.location =', s1.location)
+print("======================================================")
