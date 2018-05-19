@@ -1,0 +1,19 @@
+Like the list data type that has items that correspond to an index number, each of a string’s characters also correspond to an index number,
+starting with the index number 0.
+'''str1='h'
+str2='i'
+print('str1+str2=',str1+str2) index
+str3=str1+str2
+print('str3*6=',str3*6)'''
+s1="python"
+#positive indexing
+print('s1[0]=',s1[0])
+#-ve
+print('s[-6]=',s1[-6])
+#index
+print('s1[0:4]=',s1[0:4])
+
+#reverse
+print('s1[::-1]',s1[::-1])
+#-ve reverse
+# print(s1'[-1:-4]',[-1:])
