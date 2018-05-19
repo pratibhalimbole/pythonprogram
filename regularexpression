@@ -1,0 +1,42 @@
+Regular expressions are used to identify whether a pattern exists in a given sequence of characters (string) or not. They help in manipulating textual data,
+which is often a pre-requisite for data science projects that involve text mining.
+
+
+
+
+
+
+
+import re
+
+string = 'subject:Python'
+match = re.search(r'[a-zA-Z]+\W[a-zA-Z]+',string)
+print(match.group())
+
+print('==================================================')
+string1 = "abc@gmail.com is the another email id of xyz@yahoo.com"
+match = re.search(r'[A-Za-z0-9._]+@[a-z]+\.[a-z]+',string1)
+print('output using re.search() =',match.group())
+
+print('===================================================')
+match = re.search(r'([A-Za-z0-9._]+)@([a-z]+)\.([a-z]+)',string1)
+print('output using re.search() of match.group()=',match.group())
+print('output using re.search() of match.group(1)=',match.group(1))
+print('output using re.search() match.group(2)=',match.group(2))
+print('output using re.search() match.group(3)=',match.group(3))
+print('======================================================')
+# email id matcher
+match = re.findall(r'[A-Za-z0-9._]+@[a-z]+\.[a-z]+',string1)
+print('output using re.findall()',match)
+
+for email in match:
+    print(email)
+print('======================================================')
+# ip matcher
+ipString = 'all ips are 192.168.10.100 192.168.1.10 192.168.1.1'
+matchIp = re.findall(r'[0-9]{3}\.[0-9]{3}\.[0-9]+\.[0-9]+',ipString)
+print('matchIp =',matchIp)
+for ip in matchIp:
+    print(ip)
+regularexpression.txt
+Displaying regularexpression.txt.
