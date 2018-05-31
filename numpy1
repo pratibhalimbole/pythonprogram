@@ -1,0 +1,80 @@
+import numpy as np
+
+
+l1 = [10, 20, 30, 40, 50]
+print('l1=',l1)
+print('type(l1)=',type(l1))
+
+# add = l1+2  # TypeError: can only concatenate list (not "int") to list
+# print(add)
+
+a1 = np.array(l1)
+a1 = a1+2
+print('a1=',a1)
+print('type(a1)=',type(a1))
+
+print('a1.ndim =',a1.ndim)
+
+print('a1.shape=',a1.shape)
+print('===============================')
+a2=np.array([[10,20,30],[40,50,60]])
+print('a2=')
+print(a2)
+print('a2.ndim =',a2.ndim)
+print('type(a2)=',type(a2))
+print('===============================')
+list1 = [10,20,30,40,50,60,70,80,90]
+a3 = np.array(list1)
+print(a3)
+print(a3.ndim)
+print('a3.shape =',a3.shape)
+a3mul = np.array(list1).reshape(3,3)
+print('a3mul=',a3mul)
+print('a3mul.ndim=',a3mul.ndim)
+print('a3mul.shape =',a3mul.shape)
+print('a3mul.dtype=',a3mul.dtype)       # int32
+print('a3mul.itemsize=',a3mul.itemsize)    # int32 => 32/8 = 4
+print('==============================')
+r = range(1,10)
+print(r)
+ar = np.arange(1,10,2)
+print('ar=',ar)
+ar1 = np.arange(1,10,0.4)
+print('ar1=',ar1)
+ls = np.linspace(1,10,20)
+print('ls=',ls)
+print('================================')
+zero = np.zeros((3,3))
+print(zero)
+print('================================')
+one = np.ones((3,3))
+print(one)
+print('================================')
+identity = np.eye(5)
+print(identity)
+print('================================')
+mat1 = np.array([[10,20,30],[40,50,60]])
+mat2 = np.array([[70,80,90],[15,35,55]])
+matA = np.array([[70,80],[15,35],[90,100]])
+print('mat1')
+print(mat1)
+print('------------------------------')
+print('mat2')
+print(mat2)
+print('------------------------------')
+print('matA')
+print(matA)
+print('------------------------------')
+
+# elementwise multiplication
+print('mat1*mat2')
+print(mat1*mat2)
+print('------------------------------')
+mat3 = mat1.dot(matA)
+print('mat3 = mat1.dot(matA)')
+print(mat3)
+print('------------------------------')
+
+mat4 = np.dot(mat1,matA)
+print('mat4 = np.dot(mat1,matA)')
+print(mat4)
