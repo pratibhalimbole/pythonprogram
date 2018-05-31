@@ -1,0 +1,38 @@
+# Exception Handling
+try:
+    file = open('sampText.txt','r')
+    print(file.read())
+    #FileNotFoundError
+    print('=========================================')
+    num = 10
+    a = num
+    print(a)
+    print('=========================================')
+    n1 = 1
+    n2 = 1
+    num1 = n1 / n2
+
+except NameError:
+    print('Please initialize your variable first before assignment.')
+
+except FileNotFoundError:
+    print('Please enter proper filename')
+
+except ZeroDivisionError:
+    print("Don't use zero at the denominator")
+
+except Exception as e:
+    print("error!!!!")
+    print(e)
+
+else:
+    print("This is else block")
+
+finally:
+    print("This is finally block. It will executes everytime")
+#a = num
+#print(a)
+#NameError
+
+#num1 = 1 / 0
+#ZeroDivisionError
