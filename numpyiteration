@@ -1,0 +1,77 @@
+import numpy as np
+
+arr1 = np.array([[1,2,3],[4,5,6,],[7,8,9]])
+
+print('arr1=',arr1)
+print('type(arr1)=',type(arr1))
+
+# Iterate the numpy arrayhttps://docs.scipy.org/doc/numpy-1.13.0/user/quickstart.html#simple-array-operations
+
+# row wise output
+for i in arr1:
+    print(i)
+
+print('=====================')
+# element wise output
+for i in arr1:
+    for j in i:
+        print(j)
+print('=====================')
+# flattening the matrix
+print(arr1.flatten())
+print('--------------------')
+for i in arr1.flatten():
+    print(i)
+print('=====================')
+
+# Vector Stacking
+arr2 = np.arange(0,10,2)
+arr3 = np.arange(0,5)
+
+vStackArr = np.vstack([arr2,arr3])
+print('vStackArr')
+print(vStackArr)
+print('------------------------')
+hStackArr = np.hstack([arr2,arr3])
+print('hStackArr')
+print(hStackArr)
+print('=====================')
+# transpose
+
+print('arr1')
+print(arr1)
+print('----------------')
+print('array transpose arr1.T')
+print(arr1.T)
+#slicing of matrix
+arr4=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print("arr4")
+print(arr4)
+print(arr4[1:])
+#slicing with arrange
+arr5=np.arange(15)
+print(arr5[6:15])
+#advance indexing
+x = np.array([[1, 2], [3, 4], [5, 6]])
+y = x[[0,1,2], [0,1,0]]#includes[0,0],[1,1],[2,0]
+
+'''elements placed at corners of a 4X3 array are selected.
+The row indices of selection are [0, 0] and [3,3]
+whereas the column indices are [0,2] and [0,2].'''
+x = np.array([[ 0,  1,  2],[ 3,  4,  5],[ 6,  7,  8],[ 9, 10, 11]])
+rows = np.array([[0,0],[3,3]])
+cols = np.array([[0,2],[0,2]])
+y = x[rows, cols]
+
+print('The corner elements of this array are:')
+print(y)
+#boolean indexing
+print('The items greater than 5 are:')
+print(x[x > 5])
+#complex number
+z= np.array([1, 2+6j, 5, 3.5+5j])
+v1=np.arange(4)
+print (z[np.iscomplex(z)])
+v=np.add(v1,z)
+print("addition of matrix=")
+print(v)
