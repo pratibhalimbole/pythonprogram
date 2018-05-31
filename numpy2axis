@@ -1,0 +1,130 @@
+#numpy lib is used for liner algebric function
+import numpy as np
+l1=[10,20,30]
+print("l1 and type(l1)=",l1,type(l1))
+print("================================================")
+#add=l1+2#an only concatenate list (not "int") to list
+#print(add)
+a1=np.array(l1)
+a1=a1+2
+print("a1=",a1)
+print("type(a1)=",type(a1))#numpy.ndarray
+print("dimentions of a1=",a1.ndim)#axes=1
+print("shape=",a1.shape)#shape= (3,) 3 columns and 1 row =0
+print("================================================")
+#by using
+#list1=[10,20,30,40,50,60,70,80,90]
+a2=np.array([[10,20,30],[40,50,60]])
+print("a2=",a2)
+print("dimention a2=",a2.ndim)
+print("type of a2=",type(a2))
+print("shape of a2=",a2.shape)
+print("================================================")
+
+list1=[10,20,30,40,50,60,70,80,90]
+a3= np.array(list1)
+print(a3)
+print("a3=",a3)
+print("dimention a3=",a3.ndim)
+print("type of a3=",type(a3))
+print("shape of a3=",a3.shape)
+print("================================================")
+#now reshape the list in multidimentional array by using reshape function
+list1=[10,20,30,40,50,60,70,80,90]
+
+print(list1)
+print("========================================")
+
+a3mul=np.array(list1).reshape(3,3)#list is reshaped
+
+print("a3mul=",a3mul)
+print("========================================")
+
+print("dimention a3mul=",a3mul.ndim)
+print("type of a3mul=",type(a3mul))
+print("shape of a3mul=",a3mul.shape)
+print("itemsize=",a3.itemsize)
+print("================================================")
+r=range(1,10)
+print("r=",r)
+ar=np.arange(1,10,2)#with interval of 2
+print("ar=",ar)
+ls= np.linspace(1,20,30)
+print("ls=",ls)
+print("================================================")
+#now for matrix expression
+zero=np.zeros((3,3))
+print("zero matrix=")
+print(zero)
+print("================================================")
+one=np.ones((3,3))
+print("ones matrix=")
+print(one)
+print("================================================")
+identity=np.eye(3)
+print("diagonals are=")
+print(identity)
+print("================================================")
+mat1=np.array([[10,20,30],[40,40,40],[32,23,12]])
+mat2=np.array([[1,2,3],[4,5,6],[24,6,7]])
+print("mat1=")
+print(mat1)
+print("=============================================")
+print("mat2=")
+print(mat2)
+print("=============================================")
+mat3=mat1*mat2
+print("mat3")
+print(mat3)
+print("=============================================")
+matA=np.array([[10,20],[20,30],[30,40]])#here we did dot multiplication rule
+#number of coloumns in mat1 should equal to no of rows in matA
+print("matA")
+print(matA)
+print("=============================================")
+
+mat4=mat1.dot(matA)
+print("mat4")
+
+print(mat4)
+print("=============================================")
+#2nd way of dot production
+mat5=np.dot(mat1,matA)
+print("mat5")
+print(mat5)
+print("=============================================")
+#sum,max,min in matrix
+b=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print("matrix b=")
+print(b)
+print("=============================================")
+print("maximum in matrix b=",b.max())
+print("minimum in matrix b=",b.min())
+print("sum of matrix b=",b.sum())
+print("cumlation sum of matrix b=",b.cumsum())
+print("=============================================")
+print("now columnwise")#axix=0 is used for doing columnwise operations
+print("maximum in culmunwise by using axis=",b.max(axis=0))
+print("manimum in culmunwise by using axis=",b.min(axis=0))
+print("sum as culmunwise by using axis=",b.sum(axis=0))
+print("cumsum as culmunwise by using axis=",b.min(axis=0))
+#cumsum=prints c1,new c2=c1+c2,c3=c3+new c2
+print("=============================================")
+print("now rowwise")#axix=1 is used for doing rownwise operations
+print("maximum in rowwise by using axis=",b.max(axis=1))
+print("manimum in rowwise by using axis=",b.min(axis=1))
+print("sum as rowwise by using axis=",b.sum(axis=1))
+print("cumsum as rowwise by using axis=",b.min(axis=1))
+#cumsum=prints R1,new R2=R1+R2,R3=R3+new R2
+print("=============================================")
+c=np.add(a1,b)
+print("addition of matrix=")
+print(c)
+print("=============================================")
+d=np.sqrt(b)
+print(d)
+p= np.linspace(-np.pi, np.pi, 100)
+q= np.sin(p)
+s= np.cos(p)
+print("q=",q)
+print("s=",s)
