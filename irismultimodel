@@ -1,0 +1,328 @@
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import tree
+from sklearn import metrics
+from sklearn.cross_validation import train_test_split
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+
+iris = load_iris()
+
+print('type(iris)=',type(iris))
+
+print('iris.feature_names =',iris.feature_names)
+
+print('iris.target_names =',iris.target_names)
+
+
+print('iris.data =',iris.data)
+
+print('iris.target = ',iris.target)
+
+# Types
+print('type(iris.data) =',type(iris.data))
+
+print('type(iris.target) = ',type(iris.target))
+
+features = iris.data
+label = iris.target
+
+# step 1. Create the object of the model
+knnClf1 = KNeighborsClassifier(n_neighbors=1)
+knnClf2 = KNeighborsClassifier(n_neighbors=5)
+treeClf = tree.DecisionTreeClassifier()
+logreg = LogisticRegression()
+
+
+# Step 2. Training the model
+knnClf1.fit(features,label)
+knnClf2.fit(features,label)
+treeClf.fit(features,label)
+logreg.fit(features, label)
+print('=============================================================')
+print('=============================================================')
+print('KNeighborsClassifier')
+print('=============================================================')
+# testing
+print('knnClf1.predict([[3,4,2,1]]) =',knnClf1.predict([[3,4,2,1]]))
+print('knnClf1.predict([[5,3,3,1]]) =',knnClf1.predict([[5,3,3,1]]))
+print('knnClf1.predict([[6,4,5,2]]) =',knnClf1.predict([[6,4,5,2]]))
+print('=============================================================')
+print('knnClf2.predict([[3,4,2,1]]) =',knnClf2.predict([[3,4,2,1]]))
+print('knnClf2.predict([[5,3,3,1]]) =',knnClf2.predict([[5,3,3,1]]))
+print('knnClf2.predict([[6,4,5,2]]) =',knnClf2.predict([[6,4,5,2]]))
+print('iris.target_names =',iris.target_names)
+print('=============================================================')
+print('=============================================================')
+print('Decision Tree CLassifier')
+print('=============================================================')
+print('treeClf.predict([[3,4,2,1]]) =',treeClf.predict([[3,4,2,1]]))
+print('treeClf.predict([[5,3,3,1]]) =',treeClf.predict([[5,3,3,1]]))
+print('treeClf.predict([[6,4,5,2]]) =',treeClf.predict([[6,4,5,2]]))
+print('=============================================================')
+print('=============================================================')
+print('Logistic Regression')
+print('=============================================================')
+print('logreg.predict([[3,4,2,1]]) =',logreg.predict([[3,4,2,1]]))
+print('logreg.predict([[5,3,3,1]]) =',logreg.predict([[5,3,3,1]]))
+print('logreg.predict([[6,4,5,2]]) =',logreg.predict([[6,4,5,2]]))
+print('=============================================================')
+
+# STEP 1: split X and y into training and testing sets
+# X = data (feature)
+# Y = Traget (label)
+X_train, X_test, y_train, y_test = train_test_split(features, label, test_size=0.3, random_state=4)
+
+
+# print the shapes of the new X objects
+print('X_train.shape (feature)=',X_train.shape)
+print('X_test.shape (unknown to the model) =',X_test.shape)
+
+# print the shapes of the new y objects
+print('y_train.shape (target label)=',y_train.shape)
+print('y_test.shape',y_test.shape)
+
+# Training the model
+knnClf1.fit(X_train,y_train)
+knnClf2.fit(X_train,y_train)
+treeClf.fit(X_train,y_train)
+logreg.fit(X_train, y_train)
+
+# Test the models
+y_pred_knnclf1 = knnClf1.predict(X_test)
+y_pred_knnclf2 = knnClf2.predict(X_test)
+y_pred_treeclf = treeClf.predict(X_test)
+y_pred_logreg = logreg.predict(X_test)
+
+
+# compare actual response values (y_test) with predicted response values (y_pred)
+print('metrics.accuracy_score(y_test, y_pred_knnclf1) =',metrics.accuracy_score(y_test, y_pred_knnclf1))
+print('metrics.accuracy_score(y_test, y_pred_knnclf2) =',metrics.accuracy_score(y_test, y_pred_knnclf2))
+print('metrics.accuracy_score(y_test, y_pred_treeclf) =', metrics.accuracy_score(y_test, y_pred_treeclf))
+print('metrics.accuracy_score(y_test, y_pred_logreg) =', metrics.accuracy_score(y_test, y_pred_logreg))
+
+# Compute confusion matrix
+cnf_matrix_knnClf1 = metrics.confusion_matrix(y_test, y_pred_knnclf1)
+cnf_matrix_knnClf2 = metrics.confusion_matrix(y_test, y_pred_knnclf2)
+cnf_matrix_treeClf = metrics.confusion_matrix(y_test, y_pred_treeclf)
+cnf_matrix_logreg = metrics.confusion_matrix(y_test, y_pred_logreg)
+print('cnf_matrix_knnClf1')
+print(cnf_matrix_knnClf1)
+print('==========================')
+print('cnf_matrix_knnClf2')
+print(cnf_matrix_knnClf2)
+print('==========================')
+print('cnf_matrix_treeClf =')
+print(cnf_matrix_treeClf)
+print('==========================')
+print('cnf_matrix_logreg =')
+print(cnf_matrix_logreg)
+print('====================================================')
+print('np.diag(cnf_matrix_knnClf1) =',np.diag(cnf_matrix_knnClf1))
+print('====================================================')
+print('np.diag(cnf_matrix_knnClf2) =',np.diag(cnf_matrix_knnClf2))
+print('====================================================')
+print('np.diag(cnf_matrix_treeClf) =',np.diag(cnf_matrix_treeClf))
+print('====================================================')
+print('np.diag(cnf_matrix_treeClf) =',np.diag(cnf_matrix_logreg))
+print('====================================================')
+
+# sum()
+print('cnf_matrix_knnClf1.sum() =',cnf_matrix_knnClf1.sum())
+print('cnf_matrix_knnClf2.sum() =',cnf_matrix_knnClf2.sum())
+print('cnf_matrix_treeClf.sum() =',cnf_matrix_treeClf.sum())
+print('cnf_matrix_logreg.sum() =',cnf_matrix_logreg.sum())
+print('====================================================')
+
+# sum(axis=0) columnwise addition
+print('cnf_matrix_knnClf1.sum(axis=0) =',cnf_matrix_knnClf1.sum(axis=0))
+print('cnf_matrix_knnClf2.sum(axis=0) =',cnf_matrix_knnClf2.sum(axis=0))
+print('cnf_matrix_treeClf.sum(axis=0) =',cnf_matrix_treeClf.sum(axis=0))
+print('cnf_matrix_logreg.sum(axis=0) =',cnf_matrix_logreg.sum(axis=0))
+print('====================================================')
+# sum(axis=1) row wise addition
+print('cnf_matrix_knnClf1.sum(axis=1) =',cnf_matrix_knnClf1.sum(axis=1))
+print('cnf_matrix_knnClf2.sum(axis=1) =',cnf_matrix_knnClf2.sum(axis=1))
+print('cnf_matrix_treeClf.sum(axis=1) =',cnf_matrix_treeClf.sum(axis=1))
+print('cnf_matrix_logreg.sum(axis=1) =',cnf_matrix_logreg.sum(axis=1))
+print('================================================================')
+'''
+# sum(axis=0) columnwise addition FP False Positive
+
+# FP = confusion_matrix.sum(axis=0) - np.diag(confusion_matrix)
+
+FP_knnClf1 = cnf_matrix_knnClf1.sum(axis=0) - np.diag(cnf_matrix_knnClf1)
+FP_knnClf2 = cnf_matrix_knnClf2.sum(axis=0) - np.diag(cnf_matrix_knnClf2)
+FP_treeClf = cnf_matrix_treeClf.sum(axis=0) - np.diag(cnf_matrix_treeClf)
+FP_logreg = cnf_matrix_logreg.sum(axis=0) - np.diag(cnf_matrix_logreg)
+
+print('FP_knnClf1 =',FP_knnClf1)
+print('FP_knnClf2 =',FP_knnClf2)
+print('FP_treeClf =',FP_treeClf)
+print('FP_logreg =',FP_logreg)
+print('================================================================')
+
+# sum(axis=1) row wise addition FN False Negative
+
+#  FN = confusion_matrix.sum(axis=1) - np.diag(confusion_matrix)
+
+FN_knnClf1 = cnf_matrix_knnClf1.sum(axis=1) - np.diag(cnf_matrix_knnClf1)
+FN_knnClf2 = cnf_matrix_knnClf1.sum(axis=1) - np.diag(cnf_matrix_knnClf1)
+FN_treeClf = cnf_matrix_treeClf.sum(axis=1) - np.diag(cnf_matrix_treeClf)
+FN_logreg = cnf_matrix_logreg.sum(axis=1) - np.diag(cnf_matrix_logreg)
+print('FN_knnClf1 =',FN_knnClf1)
+print('FN_knnClf2 =',FN_knnClf2)
+print('FN_treeClf =',FN_treeClf)
+print('FN_logreg =',FN_logreg)
+print('================================================================')
+
+#True positive
+
+# TP = np.diag(confusion_matrix)
+
+TP_knnClf1 = np.diag(cnf_matrix_knnClf1)
+TP_knnClf2 = np.diag(cnf_matrix_knnClf2)
+TP_treeClf = np.diag(cnf_matrix_treeClf)
+TP_logreg = np.diag(cnf_matrix_logreg)
+print('TP_knnClf1 =',TP_knnClf1)
+print('TP_knnClf2 =',TP_knnClf2)
+print('TP_treeClf =',TP_treeClf)
+print('TP_logreg =',TP_logreg)
+print('=================================================================')
+# TN = confusion_matrix.values.sum() - (FP + FN + TP)
+
+TN_knnClf1 = cnf_matrix_knnClf1.sum() - (FP_knnClf1 + FN_knnClf1 + TP_knnClf1)
+TN_knnClf2 = cnf_matrix_knnClf2.sum() - (FP_knnClf2 + FN_knnClf2 + TP_knnClf2)
+TN_treeClf = cnf_matrix_treeClf.sum() - (FP_treeClf + FN_treeClf + TP_treeClf)
+TN_logreg = cnf_matrix_logreg.sum() - (FP_logreg + FN_logreg + TP_logreg)
+print('TN_knnClf1 =',TN_knnClf1)
+print('TN_knnClf2 =',TN_knnClf2)
+print('TN_treeClf =',TN_treeClf)
+print('TN_logreg =',TN_logreg)
+print('=================================================================')
+# # Sensitivity, hit rate, recall, or true positive rate
+# TPR = TP/(TP+FN)
+print('Sensitivity, hit rate, recall, or true positive rate')
+TPR_knnClf1 = TP_knnClf1/(TP_knnClf1+FN_knnClf1)
+TPR_knnClf2 = TP_knnClf2/(TP_knnClf2+FN_knnClf2)
+TPR_treeClf = TP_treeClf/(TP_treeClf+FN_treeClf)
+TPR_logreg = TP_logreg/(TP_logreg+FN_logreg)
+
+print('TPR_knnClf1 =',TPR_knnClf1)
+print('TPR_knnClf2 =',TPR_knnClf2)
+print('TPR_treeClf =',TPR_treeClf)
+print('TPR_logreg =',TPR_logreg)
+print('=================================================================')
+# # Specificity or true negative rate
+# TNR = TN/(TN+FP)
+print('Specificity or true negative rate')
+TNR_knnClf1 = TN_knnClf1/(TN_knnClf1+FP_knnClf1)
+TNR_knnClf2 = TN_knnClf2/(TN_knnClf2+FP_knnClf2)
+TNR_treeClf = TN_treeClf/(TN_treeClf+FP_treeClf)
+TNR_logreg = TN_logreg/(TN_logreg+FP_logreg)
+
+print('TNR_knnClf1 =',TNR_knnClf1)
+print('TNR_knnClf2 =',TNR_knnClf2)
+print('TNR_treeClf =',TNR_treeClf)
+print('TNR_logreg =',TNR_logreg)
+print('=================================================================')
+# # Precision or positive predictive value
+# PPV = TP/(TP+FP)
+print('Precision or positive predictive value')
+PPV_knnClf1 = TP_knnClf1/(TP_knnClf1+FP_knnClf1)
+PPV_knnClf2 = TP_knnClf2/(TP_knnClf2+FP_knnClf2)
+PPV_treeClf = TP_treeClf/(TP_treeClf+FP_treeClf)
+PPV_logreg = TP_logreg/(TP_logreg+FP_logreg)
+
+print('PPV_knnClf1 =',PPV_knnClf1)
+print('PPV_knnClf2 =',PPV_knnClf2)
+print('PPV_treeClf =',PPV_treeClf)
+print('PPV_logreg =',PPV_logreg)
+print('=================================================================')
+# # Negative predictive value
+# NPV = TN/(TN+FN)
+print('Negative predictive value')
+NPV_knnClf1 = TN_knnClf1/(TN_knnClf1+FN_knnClf1)
+NPV_knnClf2 = TN_knnClf2/(TN_knnClf2+FN_knnClf2)
+NPV_treeClf = TN_treeClf/(TN_treeClf+FN_treeClf)
+NPV_logreg = TN_logreg/(TN_logreg+FN_logreg)
+
+print('NPV_knnClf1 =',NPV_knnClf1)
+print('NPV_knnClf2 =',NPV_knnClf2)
+print('NPV_treeClf =',NPV_treeClf)
+print('NPV_logreg =',NPV_logreg)
+print('=================================================================')
+# # Fall out or false positive rate
+# FPR = FP/(FP+TN)
+print('Fall out or false positive rate')
+FPR_knnCLf1 = FP_knnClf1/(FP_knnClf1+TN_knnClf1)
+FPR_knnCLf2 = FP_knnClf2/(FP_knnClf2+TN_knnClf2)
+FPR_treeCLf = FP_treeClf/(FP_treeClf+TN_treeClf)
+FPR_logreg = FP_logreg/(FP_logreg+TN_logreg)
+
+print('FPR_knnCLf1 =',FPR_knnCLf1)
+print('FPR_knnCLf2 =',FPR_knnCLf2)
+print('FPR_treeCLf =',FPR_treeCLf)
+print('FPR_logreg =',FPR_logreg)
+print('=================================================================')
+# # False negative rate
+# FNR = FN/(TP+FN)
+print('False negative rate')
+FNR_knnClf1 = FN_knnClf1/(TP_knnClf1+FN_knnClf1)
+FNR_knnClf2 = FN_knnClf2/(TP_knnClf2+FN_knnClf2)
+FNR_treeClf = FN_treeClf/(TP_treeClf+FN_treeClf)
+FNR_logreg = FN_logreg/(TP_logreg+FN_logreg)
+
+print('FNR_knnClf1 =',FNR_knnClf1)
+print('FNR_knnClf2 =',FNR_knnClf2)
+print('FNR_treeClf =',FNR_treeClf)
+print('FNR_logreg =',FNR_logreg)
+print('=================================================================')
+# # False discovery rate
+# FDR = FP/(TP+FP)
+print('False Discovery Rate')
+FDR_knnClf1 = FP_knnClf1/(TP_knnClf1+FP_knnClf1)
+FDR_knnClf2 = FP_knnClf2/(TP_knnClf2+FP_knnClf2)
+FDR_treeClf = FP_treeClf/(TP_treeClf+FP_treeClf)
+FDR_logreg = FP_logreg/(TP_logreg+FP_logreg)
+
+print('FDR_knnClf1 =',FDR_knnClf1)
+print('FDR_knnClf2 =',FDR_knnClf2)
+print('FDR_treeClf =',FDR_treeClf)
+print('FDR_logreg =',FDR_logreg)
+print('=================================================================')
+# # Overall accuracy
+# ACC = (TP+TN)/(TP+FP+FN+TN)
+print('Overall accuracy')
+ACC_knnClf1 = (TP_knnClf1+TN_knnClf1)/(TP_knnClf1+FP_knnClf1+FN_knnClf1+TN_knnClf1)
+ACC_knnClf2 = (TP_knnClf2+TN_knnClf2)/(TP_knnClf2+FP_knnClf2+FN_knnClf2+TN_knnClf2)
+ACC_treeClf = (TP_treeClf+TN_treeClf)/(TP_treeClf+FP_treeClf+FN_treeClf+TN_treeClf)
+ACC_logreg = (TP_logreg+TN_logreg)/(TP_logreg+FP_logreg+FN_logreg+TN_logreg)
+
+print('ACC_knnClf1 =',ACC_knnClf1)
+print('ACC_knnClf2 =',ACC_knnClf2)
+print('ACC_treeClf =',ACC_treeClf)
+print('ACC_logreg =',ACC_logreg)
+print('=================================================================')
+'''
+# np.set_printoptions(precision=2)
+# # import the class
+# from sklearn.linear_model import LogisticRegression
+# # STEP 2: train the model on the training set
+# logreg = LogisticRegression()
+# logreg.fit(X_train, y_train)
+#
+# from sklearn import metrics
+# # print(metrics.accuracy_score(y, y_pred))
+#
+# # STEP 3: make predictions on the testing set
+# y_pred = logreg.predict(X_test)
+#
+# # compare actual response values (y_test) with predicted response values (y_pred)
+# print(metrics.accuracy_score(y_test, y_pred))
+#
+#
+# knn = KNeighborsClassifier(n_neighbors=5)
+# knn.fit(X_train, y_train)
+# y_pred = knn.predict(X_test)
+# print(metrics.accuracy_score(y_test, y_pred))
