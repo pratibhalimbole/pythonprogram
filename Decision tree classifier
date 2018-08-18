@@ -1,0 +1,22 @@
+
+# Decision tree classifier
+from sklearn import tree
+
+#features weight,smooth/bumpy surface
+features = [[140,1],[150,1],[160,0],[170,0]]
+
+labels = ['Apple','Apple','Orange','Orange']
+# step 1
+# Creation of model object
+clf = tree.DecisionTreeClassifier()
+
+
+
+# step 2
+# Training the model
+clf = clf.fit(features,labels)
+
+# step 3
+# Test the model with unknown data
+#print(clf.predict([[145,1]]))
+print(clf.predict([[155,1],[165,0]]))
