@@ -1,0 +1,53 @@
+from sklearn.datasets import load_iris
+
+from sklearn.neighbors import KNeighborsClassifier
+
+iris = load_iris()
+print(type(iris))
+
+# print the names of the four features
+print('iris.feature_names =',iris.feature_names)
+print('========================================')
+# print the iris data
+print('iris.data =',iris.data)
+print('========================================')
+# print the encoding scheme for species: 0 = setosa, 1 = versicolor, 2 = virginica
+print('iris.target_names =',iris.target_names)
+print('========================================')
+# print integers representing the species of each observation
+print('iris.target =',iris.target)
+print('========================================')
+# check the types of the features and response
+print(type(iris.data))
+print(type(iris.target))
+print('========================================')
+# check the shape of the features (first dimension = number of observations, second dimensions = number of features)
+print('iris.data.shape =',iris.data.shape)
+print('========================================')
+# store feature matrix in "X"
+#X = iris.data
+
+# store response vector in "y"
+#y = iris.target
+
+# print the shapes of X and y
+#print(X.shape)
+#print(y.shape)
+
+# step1 Object creation
+knn = KNeighborsClassifier(n_neighbors=1)
+print(knn)
+
+# step 2 Train the model
+knn.fit(iris.data, iris.target)
+
+# step 3 Test the model
+print('knn.predict([[3, 5, 4, 2]]) =',knn.predict([[3, 5, 4, 2]]))
+
+
+
+X_new = [[3, 5, 4, 2], [5, 4, 3, 2]]
+print('knn.predict([[3, 5, 4, 2], [5, 4, 3, 2]]) = ',knn.predict(X_new))
+
+
+
